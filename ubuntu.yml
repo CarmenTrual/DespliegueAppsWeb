@@ -195,15 +195,13 @@ Resources:
           cd /tmp
           mkdir AppJava
           cd AppJava
-          git clone https://github.com/CarmenTrual/DespliegueAppsWeb.git
+          git clone https://github.com/CarmenTrual/DespliegueAppsWeb.git 
           cd DespliegueAppsWeb/
           cd springholamundo-main/
           chmod +x gradlew
           rm -rf /tmp/AppJava/DespliegueAppsWeb/springholamundo-main/.gradle
           ./gradlew war
           cd build/libs/
-          mv holamundo-0.0.1-SNAPSHOT-plain.war /opt/tomcat/webapps/holamundo-0.0.1-SNAPSHOT-plain.war
-
           mv holamundo-0.0.1-SNAPSHOT-plain.war /opt/tomcat/webapps/holamundo-0.0.1-SNAPSHOT-plain.war
           # Esta tiene que ser la última instrucción
           /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2Instance --region ${AWS::Region}
