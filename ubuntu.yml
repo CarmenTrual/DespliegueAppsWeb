@@ -191,6 +191,8 @@ Resources:
           systemctl enable tomcat
           #Permitimos el trafico al puerto 80 para aceptar solicitudes http
           ufw allow 8080
+          # Detener Tomcat
+          systemctl stop tomcat
           #Desplegamos aplicacion  desde repositorio de GitHub
           cd /tmp
           mkdir AppJava
@@ -203,6 +205,8 @@ Resources:
           ./gradlew war
           cd build/libs/
           mv holamundo-0.0.1-SNAPSHOT-plain.war /opt/tomcat/webapps/holamundo-0.0.1-SNAPSHOT-plain.war
+          # Iniciar Tomcat
+          systemctl start tomcat
           # Esta tiene que ser la última instrucción
           /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2Instance --region ${AWS::Region}
       Tags:
